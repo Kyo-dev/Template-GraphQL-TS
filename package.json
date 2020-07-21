@@ -1,0 +1,40 @@
+{
+  "name": "template-graphql-ts",
+  "version": "1.0.0",
+  "description": "TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"tsc -w\" \"nodemon dist/index.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kyo-dev/Template-GraphQL-TS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kyo-dev/Template-GraphQL-TS/issues"
+  },
+  "homepage": "https://github.com/Kyo-dev/Template-GraphQL-TS#readme",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.7",
+    "@types/mongoose": "^5.7.32",
+    "@types/morgan": "^1.9.1",
+    "concurrently": "^5.2.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "graphql": "^15.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.25"
+  }
+}
