@@ -1,0 +1,2 @@
+# Template-GraphQL-TS
+TypeScript
