@@ -22,12 +22,12 @@ export default buildSchema(`
         password: String!
     }
     type RootQuery {
-        signIn(userInput: UserInput): AuthData!
+        sign_in(userInput: UserInput): AuthData!
         pingWithoutAuth: Ping!
         pingWithAuth: Ping!
     }
     type RootMutation{
-        newUser(userInput: UserInput!): User
+        sign_up(userInput: UserInput!): User
     }
     type Error {
         path: String!

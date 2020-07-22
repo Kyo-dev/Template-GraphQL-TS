@@ -69,5 +69,5 @@
     },
     "include": ["./src/**/*.tsx", "./src/**/*.ts"],
     "exclude": ["node_modules"],
-    // "files": ["types.d.ts"]
+    "files": ["types.d.ts"]
   }

@@ -3,6 +3,7 @@ import graphQLSchema from "../graphql/schema/index";
 import express, { Application } from "express";
 import { graphqlHTTP } from "express-graphql";
 import bodyParser from "body-parser";
+import jwt from "jsonwebtoken";
 import morgan from "morgan";
 
 export class App {
@@ -22,6 +23,13 @@ export class App {
 
   private middlewares() {
     this.app.use(bodyParser.json());
+    this.cores();
+    this.verifyAuth();
+    this.app.use(morgan("dev"));
+    this.app.use(express.json());
+  }
+
+  private cores() {
     this.app.use((req, res, next) => {
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
@@ -34,8 +42,35 @@ export class App {
       }
       next();
     });
-    this.app.use(morgan("dev"));
-    this.app.use(express.json());
+  }
+
+  private verifyAuth() {
+    this.app.use((req, res, next) => {
+      const authHeader = req.get("Authorization");
+      if (!authHeader) {
+        req.isAuth = false;
+        return next();
+      }
+      const token = authHeader.split(" ")[1];
+      if (!token || token === "") {
+        req.isAuth = false;
+        return next();
+      }
+      let decodedToken: any;
+      try {
+        decodedToken = jwt.verify(token, "somethingsupersecret");
+      } catch (error) {
+        req.isAuth = false;
+        return next();
+      }
+      if (!decodedToken) {
+        req.isAuth = false;
+        return next();
+      }
+      req.isAuth = true;
+      req.userId = decodedToken.userId;
+      next();
+    });
   }
 
   private routes() {
